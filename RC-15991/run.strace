@@ -1,0 +1,10 @@
+#!/bin/bash
+module --config >/dev/null 2>&1 && module purge && module load nvhpc
+
+# works:
+strace -f nvcc -v -I. -c -g ./odf_init.c
+
+echo && echo && echo
+
+# breaks:
+strace -f nvc -v -I. -c -g ./odf_init.c

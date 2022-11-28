@@ -2,7 +2,7 @@
 
 
 # if we have a module command, load the nvhpc compilers
-type module >/dev/null 2>&1 && module purge && module load nvhpc
+module --config >/dev/null 2>&1 && module purge && module load nvhpc
 
 # simple hello world sanity check
 set -x
