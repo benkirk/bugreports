@@ -2,20 +2,22 @@
 module purge && module load nvhpc/22.7
 
 set -x
+gcc  -c -g       ./hello_world.c && echo "Success!" || echo "FAIL!!!"
 nvc  -c -g       ./hello_world.c && echo "Success!" || echo "FAIL!!!"
 nvcc -c -g       ./hello_world.c && echo "Success!" || echo "FAIL!!!"
 nvc++ -x c -c -g ./hello_world.c && echo "Success!" || echo "FAIL!!!"
 
-nvc  -I. -c -g ./odf_init.c       && echo "Success!" || echo "FAIL!!!"
-nvcc -I. -c -g ./odf_init.c       && echo "Success!" || echo "FAIL!!!"
-nvc++ -x c -I. -c -g ./odf_init.c && echo "Success!" || echo "FAIL!!!"
+gcc     -I. -c -g ./odf_init.c       && echo "Success!" || echo "FAIL!!!"
+nvc  -v -I. -c -g ./odf_init.c       && echo "Success!" || echo "FAIL!!!"
+nvcc -v -I. -c -g ./odf_init.c       && echo "Success!" || echo "FAIL!!!"
+nvc++ -v -x c -I. -c -g ./odf_init.c && echo "Success!" || echo "FAIL!!!"
 set +x
 
-module load ncarcompilers
-set -x
-/glade/u/apps/gust/22.10/spack/opt/spack/ncarcompilers/0.7.1/nvhpc/22.7/bin/nvc -c -I. -g ./odf_init.c --ncar-print-opts
-/glade/u/apps/gust/22.10/spack/opt/spack/ncarcompilers/0.7.1/nvhpc/22.7/bin/nvc -c -I. -g ./odf_init.c  && echo "Success!" || echo "FAIL!!!"
-
-/glade/u/apps/gust/22.10/spack/opt/spack/ncarcompilers/0.7.1/nvhpc/22.7/bin/nvc++ -x c -c -I. -g ./odf_init.c --ncar-print-opts
-/glade/u/apps/gust/22.10/spack/opt/spack/ncarcompilers/0.7.1/nvhpc/22.7/bin/nvc++ -x c -c -I. -g ./odf_init.c  && echo "Success!" || echo "FAIL!!!"
-set +x
+# module load ncarcompilers
+# set -x
+# /glade/u/apps/gust/22.10/spack/opt/spack/ncarcompilers/0.7.1/nvhpc/22.7/bin/nvc -c -I. -g ./odf_init.c --ncar-print-opts
+# /glade/u/apps/gust/22.10/spack/opt/spack/ncarcompilers/0.7.1/nvhpc/22.7/bin/nvc -c -I. -g ./odf_init.c  && echo "Success!" || echo "FAIL!!!"
+#
+# /glade/u/apps/gust/22.10/spack/opt/spack/ncarcompilers/0.7.1/nvhpc/22.7/bin/nvc++ -x c -c -I. -g ./odf_init.c --ncar-print-opts
+# /glade/u/apps/gust/22.10/spack/opt/spack/ncarcompilers/0.7.1/nvhpc/22.7/bin/nvc++ -x c -c -I. -g ./odf_init.c  && echo "Success!" || echo "FAIL!!!"
+# set +x
