@@ -21,7 +21,7 @@ int hit_getint(char *rec, int len);
 double hit_getdbl(char *rec, int len);
 
 
-int mol_in_the_problem ( 
+int mol_in_the_problem (
 			int		M,
 			MOLECULE	*mol,
 			PARAMETERINFO	*pars );
@@ -60,15 +60,15 @@ int print_ATMOSPHERE (
 		);
 
 int print_QROT (
-		double			**, 
+		double			**,
 		int			,
 		PARAMETERINFO 		*);
 
-int print_POP( 
+int print_POP(
 		double			**,
 		PARAMETERINFO		*);
 
-int print_TVIB_plus( 
+int print_TVIB_plus(
 		double			**,
 		double			**,
 		VIBLEVEL		*,
@@ -77,14 +77,14 @@ int print_TVIB_plus(
 		PARAMETERINFO		*);
 
 int print_CVV (
-		BAND_CVV		*, 
-		MOLECULE		*, 
-		VIBLEVEL		*, 
+		BAND_CVV		*,
+		MOLECULE		*,
+		VIBLEVEL		*,
 		PARAMETERINFO		*);
 
 int print_RMAT(
 		double			**,
-		int			
+		int
 		);
 
 int print_FMAT(
@@ -96,7 +96,7 @@ int print_FMAT(
 int print_RMAT_RHS(
 		double			**,
 		double			*,
-		int 
+		int
 		);
 
 int print_RMAT_RHS_long(
@@ -104,7 +104,7 @@ int print_RMAT_RHS_long(
 		double			*,
 		int );
 
-VIBLEVEL * init_vl_data ( 
+VIBLEVEL * init_vl_data (
 		MOLECULE		*mol,
 		VIBLEVEL		*v_level,
 		PARAMETERINFO		*pars);
@@ -123,15 +123,15 @@ void fill_atmosphere_model (ATMOSPHERE		*atmos,
 int fill_atmos (
 		ATMOSPHERE		*atmos);
 
-int compute_qrot ( 
+int compute_qrot (
 		double			**Qrot,
 		VIBLEVEL		*v_level,
 		ATMOSPHERE		*atmos,
 		PARAMETERINFO		*pars);
-		
+
 BAND_CVV * fill_CVV (
 		MOLECULE		*molecule,
-		VIBLEVEL		*v_level, 
+		VIBLEVEL		*v_level,
 		BAND_CVV		*cvv_band,
 		DEBYE_INFO		*deb,
 		PARAMETERINFO		*pars);
@@ -193,7 +193,7 @@ int	compute_dynamic_coll_coeff(
 		);
 
 
-double check_conv( 
+double check_conv(
 		double 			**PopV,
 		double 			**PopVN,
 		double			**Delta,
@@ -290,7 +290,7 @@ int init_ODF_freq(INTEGR_ODF		*integr_ODF,
 		  PARAMETERINFO		*pars);
 
 int free_ODF_freq(INTEGR_ODF	*integr_ODF);
-		  
+
 void	quick_sort(double **Y,int left, int right);
 
 int clear_rates(
@@ -302,7 +302,7 @@ int is_level_in_problem(
 			int		iMol,
 			VIBLEVEL	*v_level,
 			int		il);
-	
+
 int init_odf (double		**Qrot,
               ATMOSPHERE	*atmos,
               VIBLEVEL		*v_level,
@@ -310,12 +310,11 @@ int init_odf (double		**Qrot,
               PARAMETERINFO	*pars,
               BAND_ODF		*band_odf);
 
-int	copy_odf_src(	LINE_ODF_prelim *odf_src,
+int	copy_odf_src(	const LINE_ODF_prelim *odf_src,
 			int 		i,
 			LINE_ODF	*line_odf,
 			int		j);
-	      			
+
 double	param_odf(double	x, double	P, double	T);
 
 int	free_band_odf(BAND_ODF	*band_odf,int	ND);
-			
