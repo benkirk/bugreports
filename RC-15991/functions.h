@@ -64,13 +64,13 @@ double dfe_optlimb2(double *dtaum, double *sm,
 
 double sho_optlimb1(double *dtaum, double *sm, int nd, double *pool);
 
-double fea_optlimb1(double *dtaum, double *sm, double *jm, 
+double fea_optlimb1(double *dtaum, double *sm, double *jm,
 	            int nd,double *pool);
 
 int dfe_geom1(double *dtaum, double *emism, double *dlm, double *jm,
 	     double fincd, int nd, double *pool);
 
-int dfe_geomlimb1(double *dtaum, double *emism, double *dlm, double *jm, 
+int dfe_geomlimb1(double *dtaum, double *emism, double *dlm, double *jm,
 	          int nd, double *pool);
 
 double dfe_geomlimb2(double *dtaum, double *emism, double *dlm, int nd );

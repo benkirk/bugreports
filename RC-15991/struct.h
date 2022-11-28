@@ -49,7 +49,7 @@ typedef struct {
 	double		*xw;
 	} INTEGR_ODF;
 
-	
+
 typedef struct {
 	int		iso;
 	int		ivu_name;       /* 02201, etc */
@@ -61,32 +61,32 @@ typedef struct {
 	double		f0_band;   	/* EVU - EVL */
 	double		A_band;         /* for the most intensive line at T=300K */
 	double		BU_band;
-	double		BD_band; 	
+	double		BD_band;
 	double		SumWup;		/* sum of rotational distribution =1, 0.5 */
 	double		SumWlo;		/* ---//--- for the lower level  */
 	int		type;		/* -1/0/1 = P/Q/R */
         double		koeff_tmp;       /* precalculated and rounded rescaling coefficient - added 29/03/2020 */
-	} LINE_ODF_prelim;	
-	
+	} LINE_ODF_prelim;
+
 typedef struct {
 	int			N_elts;
 	double		P;
-	double		T;     
+	double		T;
 	double		DOP; /* Doppler halfwidth, can be used for recalculations back- and forth */
 	double		X_ODF[30];
 	double		prof[30];
-	} ODF_LUT;	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
+	} ODF_LUT;
+
+
+
+
+
+
+
+
+
+
+
 typedef struct {
 	int		mole;
 	int		iso;
@@ -101,15 +101,15 @@ typedef struct {
 	double		f0_band;   	/* EVU - EVL */
 	double		A_band;         /* for the most intensive line at T=300K */
 	double		BU_band;
-	double		BD_band; 	
+	double		BD_band;
 	double		SumWup;		/* sum of rotational distribution =1, 0.5 */
-	double		SumWlo;		/* ---//--- for the lower level  */	
-	int		type;		/* -1/0/1 = P/Q/R */	
-	double		*koeff;		
+	double		SumWlo;		/* ---//--- for the lower level  */
+	int		type;		/* -1/0/1 = P/Q/R */
+	double		*koeff;
 	/* =line_odf[odf_index].profile[id]/line_odf[4].profile[id]*/
         /* koeff is used for renormalising of ODF profile */
-	
-	double		FincD;		
+
+	double		FincD;
         double		koeff_tmp; /* technical trick, saving data and rounding them 29/03/2020 */
 	} LINE_ODF;
 
@@ -187,7 +187,7 @@ typedef struct {
 	double		*Cp;
 	int		ND;
 	double		*WTS_suppl_0;
-	double		*WTS_suppl_1;	
+	double		*WTS_suppl_1;
 	} ATMOSPHERE;
 
 typedef struct {
@@ -206,7 +206,7 @@ typedef struct {
 	double		frequency;
 	double		aein;
 	double		debye;
-	} DEBYE_INFO;	
+	} DEBYE_INFO;
 
 typedef struct {
     int     hitnumber;
@@ -217,7 +217,7 @@ typedef struct {
     int     gj;
     double      amass;
     int     sym;
-    } MOLPARAM;	
+    } MOLPARAM;
 
 typedef struct {
 	double		R;
