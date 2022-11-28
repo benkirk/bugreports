@@ -1,5 +1,0 @@
-module reset && module load nvhpc/22.7
-/glade/u/apps/gust/22.10/spack/opt/spack/ncarcompilers/0.7.1/nvhpc/22.7/bin/CC -x c -c -I. -g -time -tp=zen3 ./odf_init.c && echo "Success!" || echo "FAIL!!!"
-
-module purge && module load nvhpc/22.7
-nvc++ -x c -time ./hello_world.c && echo "Success!" || echo "FAIL!!!"

@@ -1,0 +1,4 @@
+# works?:
+module purge && module load nvhpc
+
+strace nvc -v -I. -c -g ./odf_init.c
