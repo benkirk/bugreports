@@ -18,14 +18,7 @@ int init_odf (double		**Qrot,
 {
  const LINE_ODF_prelim odf_src[]={
 #include "odf_hitran.h"
-
-#if 0
- {626, 1101,    1,1.0,0.7,0.39,8.5463442e-12,667.0,0.5,0.5,0.5,1.0},
- {636, 1101,    1,1.1,0.7,0.39,8.6429162e-12,667.0,0.5,0.5,0.5,1.0},
- {626, 2201, 1101,1.2,0.7,0.39,8.5463442e-12,667.0,0.5,0.5,0.5,1.0}
-#endif
  };
-/* iso, ivu,  ivl,G0,CTMP,Brot,sqM,fband,A_b,BU_,BD_,SumWup */
 
  /* new structure, 22/03/2020 */
  const ODF_LUT odf_lut[] ={
@@ -35,14 +28,13 @@ int init_odf (double		**Qrot,
  LINE_ODF	*line_odf;
 
  double		**ODF_PROFILE;
- double		*P, *TE, *x;
- double		dNuLor,dNuDop,sqRoot_Bi_B0,sqRoot_M0_Mi,F0i_F00,exp_coeff;
- double		exp_B0_Bi,compl_coeff,Q00,Qmax,xnorm;
+ double		*P, *TE;
+ double		xnorm;
  double		w_LL, w_LR, w_RL, w_RR, w_T_left, w_T_right, w_P_left, w_P_right;
 
  const int N_P_LUT=221, N_T_LUT=51;  /* hardwired coefficients bound to LUT, updated on the 5th of April 2020 */
  int		NMAX,ivl,NVL,i,id,ND,num1_0;
- int		U_found,L_found,odf_counter,ifr,NF,P_R_join, N_LUT, i_lut, i_elt;
+ int		U_found,L_found,odf_counter,ifr,NF,P_R_join;
  int		i_T_left, i_T_right, i_P_left, i_P_right, i_LL, i_LR, i_RL, i_RR;
 
  TE		=atmos->temperature;
@@ -53,7 +45,6 @@ int init_odf (double		**Qrot,
  ND		=pars->ND;
  P_R_join	=pars->P_R_join;
  NF		=band_odf->integr_odf->NF;
- x		=band_odf->integr_odf->x;
 
 
  if ((pars->odf_NF1+pars->odf_NF2)!=odf_lut[0].N_elts )
@@ -61,20 +52,6 @@ int init_odf (double		**Qrot,
    printf("ODF N points in the LUT and in the parameters do not match: %i != %i, exiting\n",pars->odf_NF1+pars->odf_NF2, odf_lut[0].N_elts);
    exit(123);
   }
-
-  N_LUT=sizeof(odf_lut)/sizeof(odf_lut[0]);
-
-#if 0
-  for (i_lut=0;i_lut<N_LUT;i_lut++)
-   {
-	printf("LUT %14.6e %8.3f\n",odf_lut[i_lut].P, odf_lut[i_lut].T);
-	for (i_elt=0;i_elt<odf_lut[i_lut].N_elts;i_elt++)
-	 {
-	  printf("%14.6e %14.6e\n",odf_lut[i_lut].X_ODF[i_elt],odf_lut[i_lut].prof[i_elt]);
-     }
-   }
-#endif
-
 
  ODF_PROFILE	=band_odf->ODF_PROFILE;
 
@@ -118,13 +95,6 @@ int init_odf (double		**Qrot,
        pars->num1_0	=odf_counter;
        num1_0		=odf_counter;
       }
-#if 0
-     printf("odf N %i is included\n",i);
-     printf("iso= %3i U= %5.5d L= %5.5d\n",
-     line_odf[odf_counter].iso,
-     line_odf[odf_counter].ivu_name,
-     line_odf[odf_counter].ivl_name);
-#endif
       odf_counter++;
     }
   } /* i - cycle over ODF */
@@ -141,16 +111,6 @@ int init_odf (double		**Qrot,
 
  /* calculating koeff[id] = sqrt(Brot/Brot0)*exp(-h(Brot0-Brot)/4/BOLTZK/TE[id])* */
  /* *f0_band/f0_band0*sqrt(m0/m)*voigt(0,AV)/voigt(0,AV0) */
-
-#if 0     /* 29/03/2020 - simplified to LUT values */
- for(i=0;i<odf_counter;i++)
-  {
-   for(id=0;id<ND;id++)
-    {
-     line_odf[i].koeff[id]=line_odf[i].koeff_tmp;
-    }
-  }
-#endif
 
  for(id=0;id<ND;id++)
   {
@@ -227,9 +187,6 @@ int init_odf (double		**Qrot,
    for(ifr=0;ifr<NF;ifr++)
     {
      ODF_PROFILE[id][ifr]/=2.0*xnorm;
-#if 0
-     printf("id= %3i X= %8.6e Y= %6.4e\n",id,x[ifr],ODF_PROFILE[id][ifr]);
-#endif
     }
 #ifdef PRINT
      printf("id= %3i xnorm= %6.4e\n",id,2.0*xnorm);
@@ -303,13 +260,11 @@ double	param_odf(double	x, double	P, double	T)
  const double	A6=-2.5e-5*0.975;
  const double	B1=2.223e-4,B2=400.0,B3=0.75+0.5,B4=1e-5;
  const double	C1= 64.2327,C2= 0.106409, C3=2.18864, C4= -20.0082;
- double		x2,x3,x6,y,B,x0, dLor;
+ double		x2,x3,x6,y,B,x0;
 
  B=B1*pow((B2/T),B3)*P/B4;
 
  x0=C1/(pow(B,C2)+C3)+C4;
-
- dLor=0.05*pow(296.0/T,0.7)*P;
 
  if (x<x0)
   {
