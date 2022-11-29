@@ -1,0 +1,37 @@
+==> autoconf: Executing phase: 'configure'
+==> [2022-11-29-13:53:20.956647] '/glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src/configure' '--prefix=/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/[padded-to-128-chars]/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5'
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+configure: autobuild project... GNU Autoconf
+configure: autobuild revision... 2.71
+configure: autobuild hostname... casper-login1
+configure: autobuild timestamp... 20221129T205321Z
+checking for a shell whose -n mode is known to work... /bin/sh
+checking for characters that cannot appear in file names... none
+checking whether directories can have trailing spaces... yes
+checking for expr... /usr/bin/expr
+checking for GNU M4 that supports accurate traces... /glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/m4-1.4.19-5alq4n7vhsriwhpvdj7sebgfrtpsizac/bin/m4
+checking whether /glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/m4-1.4.19-5alq4n7vhsriwhpvdj7sebgfrtpsizac/bin/m4 accepts --gnu... yes
+checking how m4 supports trace files... --debugfile
+checking for perl... /glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/perl-5.36.0-anfitppgefpfm45xszj5mlmkwm2k345m/bin/perl
+checking whether /glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/perl-5.36.0-anfitppgefpfm45xszj5mlmkwm2k345m/bin/perl Fcntl::flock is implemented... yes
+checking for emacs... emacs
+checking whether emacs is sufficiently recent... yes
+checking for emacs... emacs
+checking where .elc files should go... ${datadir}/emacs/site-lisp
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for a sed that does not truncate output... /usr/bin/sed
+checking whether make is case sensitive... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating tests/atlocal
+config.status: creating Makefile
+config.status: linking /glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src/GNUmakefile to GNUmakefile
+config.status: executing tests/atconfig commands

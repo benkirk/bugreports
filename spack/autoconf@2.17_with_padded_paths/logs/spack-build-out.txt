@@ -1,0 +1,130 @@
+==> autoconf: Executing phase: 'autoreconf'
+==> autoconf: Executing phase: 'configure'
+==> [2022-11-29-13:53:20.956647] '/glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src/configure' '--prefix=/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/[padded-to-128-chars]/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5'
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+configure: autobuild project... GNU Autoconf
+configure: autobuild revision... 2.71
+configure: autobuild hostname... casper-login1
+configure: autobuild timestamp... 20221129T205321Z
+checking for a shell whose -n mode is known to work... /bin/sh
+checking for characters that cannot appear in file names... none
+checking whether directories can have trailing spaces... yes
+checking for expr... /usr/bin/expr
+checking for GNU M4 that supports accurate traces... /glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/m4-1.4.19-5alq4n7vhsriwhpvdj7sebgfrtpsizac/bin/m4
+checking whether /glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/m4-1.4.19-5alq4n7vhsriwhpvdj7sebgfrtpsizac/bin/m4 accepts --gnu... yes
+checking how m4 supports trace files... --debugfile
+checking for perl... /glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/perl-5.36.0-anfitppgefpfm45xszj5mlmkwm2k345m/bin/perl
+checking whether /glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/perl-5.36.0-anfitppgefpfm45xszj5mlmkwm2k345m/bin/perl Fcntl::flock is implemented... yes
+checking for emacs... emacs
+checking whether emacs is sufficiently recent... yes
+checking for emacs... emacs
+checking where .elc files should go... ${datadir}/emacs/site-lisp
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for a sed that does not truncate output... /usr/bin/sed
+checking whether make is case sensitive... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating tests/atlocal
+config.status: creating Makefile
+config.status: linking /glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src/GNUmakefile to GNUmakefile
+config.status: executing tests/atconfig commands
+==> autoconf: Executing phase: 'build'
+==> [2022-11-29-13:53:22.262607] 'make' '-j16' 'V=1'
+make  all-am
+make[1]: Entering directory `/glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src/spack-build'
+rm -f bin/autom4te bin/autom4te.tmp
+rm -f lib/autom4te.cfg lib/autom4te.cfg-t
+/usr/bin/mkdir -p bin
+/usr/bin/mkdir -p lib/m4sugar
+srcdir=''; \
+  test -f ./bin/autom4te.in || srcdir=/glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src/; \
+  sed -e 's|@SHELL[@]|/bin/sh|g' -e 's|@PERL[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/perl-5.36.0-anfitppgefpfm45xszj5mlmkwm2k345m/bin/perl|g' -e 's|@PERL_FLOCK[@]|yes|g' -e 's|@bindir[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/bin|g' -e 's|@pkgdatadir[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/share/autoconf|g' -e 's|@prefix[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5|g' -e 's|@autoconf-name[@]|'`echo autoconf | sed 's,x,x,'`'|g' -e 's|@autoheader-name[@]|'`echo autoheader | sed 's,x,x,'`'|g' -e 's|@autom4te-name[@]|'`echo autom4te | sed 's,x,x,'`'|g' -e 's|@M4[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/m4-1.4.19-5alq4n7vhsriwhpvdj7sebgfrtpsizac/bin/m4|g' -e 's|@M4_DEBUGFILE[@]|--debugfile|g' -e 's|@M4_GNU[@]|--gnu|g' -e 's|@AWK[@]|gawk|g' -e 's|@RELEASE_YEAR[@]|2021|g' -e 's|@VERSION[@]|2.71|g' -e 's|@PACKAGE_NAME[@]|GNU Autoconf|g' -e 's|@configure_input[@]|Generated from bin/autom4te.in; do not edit by hand.|g' ${srcdir}bin/autom4te.in >bin/autom4te.tmp
+/usr/bin/mkdir -p lib
+rm -f bin/autoheader bin/autoheader.tmp
+sed -e 's|@SHELL[@]|/bin/sh|g' -e 's|@PERL[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/perl-5.36.0-anfitppgefpfm45xszj5mlmkwm2k345m/bin/perl|g' -e 's|@PERL_FLOCK[@]|yes|g' -e 's|@bindir[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/bin|g' -e 's|@pkgdatadir[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/share/autoconf|g' -e 's|@prefix[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5|g' -e 's|@autoconf-name[@]|'`echo autoconf | sed 's,x,x,'`'|g' -e 's|@autoheader-name[@]|'`echo autoheader | sed 's,x,x,'`'|g' -e 's|@autom4te-name[@]|'`echo autom4te | sed 's,x,x,'`'|g' -e 's|@M4[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/m4-1.4.19-5alq4n7vhsriwhpvdj7sebgfrtpsizac/bin/m4|g' -e 's|@M4_DEBUGFILE[@]|--debugfile|g' -e 's|@M4_GNU[@]|--gnu|g' -e 's|@AWK[@]|gawk|g' -e 's|@RELEASE_YEAR[@]|2021|g' -e 's|@VERSION[@]|2.71|g' -e 's|@PACKAGE_NAME[@]|GNU Autoconf|g' -e 's|@configure_input[@]|Generated from lib/autom4te.cfg.in; do not edit by hand.|g' /glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src/lib/autom4te.in >lib/autom4te.cfg-t
+:;{ \
+  echo '# This file is part of -*- Autoconf -*-.' && \
+  echo '# Version of Autoconf.' && \
+  echo '# Copyright (C) 1999, 2000, 2001, 2002, 2006, 2007, 2009' && \
+  echo '# Free Software Foundation, Inc.' && \
+  echo  &&\
+  echo 'm4_define([m4_PACKAGE_NAME],      [GNU Autoconf])' && \
+  echo 'm4_define([m4_PACKAGE_TARNAME],   [autoconf])' && \
+  echo 'm4_define([m4_PACKAGE_VERSION],   [2.71])' && \
+  echo 'm4_define([m4_PACKAGE_STRING],    [GNU Autoconf 2.71])' && \
+  echo 'm4_define([m4_PACKAGE_BUGREPORT], [bug-autoconf@gnu.org])' && \
+  echo 'm4_define([m4_PACKAGE_URL],       [https://www.gnu.org/software/autoconf/])' && \
+  echo 'm4_define([m4_PACKAGE_YEAR],      [2021])'; \
+} > lib/m4sugar/version.m4-t
+rm -f bin/autoreconf bin/autoreconf.tmp
+mv lib/m4sugar/version.m4-t lib/m4sugar/version.m4
+/usr/bin/mkdir -p bin
+rm -f bin/autoscan bin/autoscan.tmp
+srcdir=''; \
+  test -f ./bin/autoheader.in || srcdir=/glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src/; \
+  sed -e 's|@SHELL[@]|/bin/sh|g' -e 's|@PERL[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/perl-5.36.0-anfitppgefpfm45xszj5mlmkwm2k345m/bin/perl|g' -e 's|@PERL_FLOCK[@]|yes|g' -e 's|@bindir[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/bin|g' -e 's|@pkgdatadir[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/share/autoconf|g' -e 's|@prefix[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5|g' -e 's|@autoconf-name[@]|'`echo autoconf | sed 's,x,x,'`'|g' -e 's|@autoheader-name[@]|'`echo autoheader | sed 's,x,x,'`'|g' -e 's|@autom4te-name[@]|'`echo autom4te | sed 's,x,x,'`'|g' -e 's|@M4[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/m4-1.4.19-5alq4n7vhsriwhpvdj7sebgfrtpsizac/bin/m4|g' -e 's|@M4_DEBUGFILE[@]|--debugfile|g' -e 's|@M4_GNU[@]|--gnu|g' -e 's|@AWK[@]|gawk|g' -e 's|@RELEASE_YEAR[@]|2021|g' -e 's|@VERSION[@]|2.71|g' -e 's|@PACKAGE_NAME[@]|GNU Autoconf|g' -e 's|@configure_input[@]|Generated from bin/autoheader.in; do not edit by hand.|g' ${srcdir}bin/autoheader.in >bin/autoheader.tmp
+/usr/bin/mkdir -p bin
+rm -f bin/autoupdate bin/autoupdate.tmp
+chmod +x bin/autom4te.tmp
+chmod a-w lib/autom4te.cfg-t
+srcdir=''; \
+  test -f ./bin/autoreconf.in || srcdir=/glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src/; \
+  sed -e 's|@SHELL[@]|/bin/sh|g' -e 's|@PERL[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/perl-5.36.0-anfitppgefpfm45xszj5mlmkwm2k345m/bin/perl|g' -e 's|@PERL_FLOCK[@]|yes|g' -e 's|@bindir[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/bin|g' -e 's|@pkgdatadir[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/share/autoconf|g' -e 's|@prefix[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5|g' -e 's|@autoconf-name[@]|'`echo autoconf | sed 's,x,x,'`'|g' -e 's|@autoheader-name[@]|'`echo autoheader | sed 's,x,x,'`'|g' -e 's|@autom4te-name[@]|'`echo autom4te | sed 's,x,x,'`'|g' -e 's|@M4[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/m4-1.4.19-5alq4n7vhsriwhpvdj7sebgfrtpsizac/bin/m4|g' -e 's|@M4_DEBUGFILE[@]|--debugfile|g' -e 's|@M4_GNU[@]|--gnu|g' -e 's|@AWK[@]|gawk|g' -e 's|@RELEASE_YEAR[@]|2021|g' -e 's|@VERSION[@]|2.71|g' -e 's|@PACKAGE_NAME[@]|GNU Autoconf|g' -e 's|@configure_input[@]|Generated from bin/autoreconf.in; do not edit by hand.|g' ${srcdir}bin/autoreconf.in >bin/autoreconf.tmp
+/usr/bin/mkdir -p bin
+chmod a-w bin/autom4te.tmp
+mv -f lib/autom4te.cfg-t lib/autom4te.cfg
+srcdir=''; \
+  test -f ./bin/autoscan.in || srcdir=/glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src/; \
+  sed -e 's|@SHELL[@]|/bin/sh|g' -e 's|@PERL[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/perl-5.36.0-anfitppgefpfm45xszj5mlmkwm2k345m/bin/perl|g' -e 's|@PERL_FLOCK[@]|yes|g' -e 's|@bindir[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/bin|g' -e 's|@pkgdatadir[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/share/autoconf|g' -e 's|@prefix[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5|g' -e 's|@autoconf-name[@]|'`echo autoconf | sed 's,x,x,'`'|g' -e 's|@autoheader-name[@]|'`echo autoheader | sed 's,x,x,'`'|g' -e 's|@autom4te-name[@]|'`echo autom4te | sed 's,x,x,'`'|g' -e 's|@M4[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/m4-1.4.19-5alq4n7vhsriwhpvdj7sebgfrtpsizac/bin/m4|g' -e 's|@M4_DEBUGFILE[@]|--debugfile|g' -e 's|@M4_GNU[@]|--gnu|g' -e 's|@AWK[@]|gawk|g' -e 's|@RELEASE_YEAR[@]|2021|g' -e 's|@VERSION[@]|2.71|g' -e 's|@PACKAGE_NAME[@]|GNU Autoconf|g' -e 's|@configure_input[@]|Generated from bin/autoscan.in; do not edit by hand.|g' ${srcdir}bin/autoscan.in >bin/autoscan.tmp
+/usr/bin/mkdir -p bin
+mv bin/autom4te.tmp bin/autom4te
+rm -f bin/ifnames bin/ifnames.tmp
+srcdir=''; \
+  test -f ./bin/autoupdate.in || srcdir=/glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src/; \
+  sed -e 's|@SHELL[@]|/bin/sh|g' -e 's|@PERL[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/perl-5.36.0-anfitppgefpfm45xszj5mlmkwm2k345m/bin/perl|g' -e 's|@PERL_FLOCK[@]|yes|g' -e 's|@bindir[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/bin|g' -e 's|@pkgdatadir[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/share/autoconf|g' -e 's|@prefix[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5|g' -e 's|@autoconf-name[@]|'`echo autoconf | sed 's,x,x,'`'|g' -e 's|@autoheader-name[@]|'`echo autoheader | sed 's,x,x,'`'|g' -e 's|@autom4te-name[@]|'`echo autom4te | sed 's,x,x,'`'|g' -e 's|@M4[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/m4-1.4.19-5alq4n7vhsriwhpvdj7sebgfrtpsizac/bin/m4|g' -e 's|@M4_DEBUGFILE[@]|--debugfile|g' -e 's|@M4_GNU[@]|--gnu|g' -e 's|@AWK[@]|gawk|g' -e 's|@RELEASE_YEAR[@]|2021|g' -e 's|@VERSION[@]|2.71|g' -e 's|@PACKAGE_NAME[@]|GNU Autoconf|g' -e 's|@configure_input[@]|Generated from bin/autoupdate.in; do not edit by hand.|g' ${srcdir}bin/autoupdate.in >bin/autoupdate.tmp
+autom4te_perllibdir='/glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src'/lib AUTOM4TE_CFG='lib/autom4te.cfg'         bin/autom4te -B ''lib -B '/glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src'/lib         --language=M4sh /glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src/tests/wrapper.as -o tests/wrapper.in
+chmod +x bin/autoheader.tmp
+/usr/bin/mkdir -p bin
+if test 'emacs' != no; then \
+  am__dir=. am__subdir_includes=''; \
+  case lib/emacs/autoconf-mode.elc in */*) \
+    am__dir=`echo 'lib/emacs/autoconf-mode.elc' | sed 's,/[^/]*$,,'`; \
+    am__subdir_includes="-L $am__dir -L /glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src/$am__dir"; \
+  esac; \
+  test -d "$am__dir" || /usr/bin/mkdir -p "$am__dir" || exit 1; \
+  emacs --batch \
+      \
+    $am__subdir_includes -L . -L /glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src \
+    --eval '(if (boundp (quote byte-compile-dest-file-function)) (setq byte-compile-dest-file-function (lambda (_) "lib/emacs/autoconf-mode.elc")) (defun byte-compile-dest-file (_) "lib/emacs/autoconf-mode.elc") )' \
+    -f batch-byte-compile '/glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src/lib/emacs/autoconf-mode.el'; \
+else :; fi
+/bin/sh: bin/autom4te: /glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/op: bad interpreter: No such file or directory
+chmod a-w bin/autoheader.tmp
+srcdir=''; \
+  test -f ./bin/ifnames.in || srcdir=/glade/scratch/benkirk/spack-stage/spack-stage-autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/spack-src/; \
+  sed -e 's|@SHELL[@]|/bin/sh|g' -e 's|@PERL[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/perl-5.36.0-anfitppgefpfm45xszj5mlmkwm2k345m/bin/perl|g' -e 's|@PERL_FLOCK[@]|yes|g' -e 's|@bindir[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/bin|g' -e 's|@pkgdatadir[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/share/autoconf|g' -e 's|@prefix[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5|g' -e 's|@autoconf-name[@]|'`echo autoconf | sed 's,x,x,'`'|g' -e 's|@autoheader-name[@]|'`echo autoheader | sed 's,x,x,'`'|g' -e 's|@autom4te-name[@]|'`echo autom4te | sed 's,x,x,'`'|g' -e 's|@M4[@]|/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/m4-1.4.19-5alq4n7vhsriwhpvdj7sebgfrtpsizac/bin/m4|g' -e 's|@M4_DEBUGFILE[@]|--debugfile|g' -e 's|@M4_GNU[@]|--gnu|g' -e 's|@AWK[@]|gawk|g' -e 's|@RELEASE_YEAR[@]|2021|g' -e 's|@VERSION[@]|2.71|g' -e 's|@PACKAGE_NAME[@]|GNU Autoconf|g' -e 's|@configure_input[@]|Generated from bin/ifnames.in; do not edit by hand.|g' ${srcdir}bin/ifnames.in >bin/ifnames.tmp
+make[1]: *** [tests/wrapper.in] Error 126
+make[1]: *** Waiting for unfinished jobs....
+mv bin/autoheader.tmp bin/autoheader
+chmod +x bin/autoreconf.tmp
+chmod +x bin/autoscan.tmp
+chmod a-w bin/autoreconf.tmp
+chmod a-w bin/autoscan.tmp
+mv bin/autoreconf.tmp bin/autoreconf
+mv bin/autoscan.tmp bin/autoscan
+chmod +x bin/autoupdate.tmp
+chmod a-w bin/autoupdate.tmp
+mv bin/autoupdate.tmp bin/autoupdate
+chmod +x bin/ifnames.tmp
+chmod a-w bin/ifnames.tmp
+mv bin/ifnames.tmp bin/ifnames
+make[1]: *** wait: No child processes.  Stop.
+make: *** [all] Error 2

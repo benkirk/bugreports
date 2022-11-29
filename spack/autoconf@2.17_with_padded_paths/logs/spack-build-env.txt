@@ -1,0 +1,163 @@
+function _spack_shell_wrapper() {  for var in LD_LIBRARY_PATH DYLD_LIBRARY_PATH DYLD_FALLBACK_LIBRARY_PATH;
+ do
+ eval "if [ -n \"\${${var}-}\" ]; then export SPACK_$var=\${${var}}; fi";
+ done;
+ if [ -n "${ZSH_VERSION:-}" ]; then
+ emulate -L sh;
+ fi;
+ _sp_flags="";
+ while [ ! -z ${1+x} ] && [ "${1#-}" != "${1}" ]; do
+ _sp_flags="$_sp_flags $1";
+ shift;
+ done;
+ if [ -n "$_sp_flags" ] && [ "${_sp_flags#*h}" != "${_sp_flags}" ] || [ "${_sp_flags#*V}" != "${_sp_flags}" ]; then
+ command spack $_sp_flags "$@";
+ return;
+ fi;
+ _sp_subcommand="";
+ if [ ! -z ${1+x} ]; then
+ _sp_subcommand="$1";
+ shift;
+ fi;
+ case $_sp_subcommand in 
+ "cd")
+ _sp_arg="";
+ if [ -n "$1" ]; then
+ _sp_arg="$1";
+ shift;
+ fi;
+ if [ "$_sp_arg" = "-h" ] || [ "$_sp_arg" = "--help" ]; then
+ command spack cd -h;
+ else
+ LOC="$(spack location $_sp_arg "$@")";
+ if [ -d "$LOC" ]; then
+ cd "$LOC";
+ else
+ return 1;
+ fi;
+ fi;
+ return
+ ;;
+ "env")
+ _sp_arg="";
+ if [ -n "$1" ]; then
+ _sp_arg="$1";
+ shift;
+ fi;
+ if [ "$_sp_arg" = "-h" ] || [ "$_sp_arg" = "--help" ]; then
+ command spack env -h;
+ else
+ case $_sp_arg in 
+ activate)
+ _a=" $@";
+ if [ -z ${1+x} ] || [ "${_a#* --sh}" != "$_a" ] || [ "${_a#* --csh}" != "$_a" ] || [ "${_a#* -h}" != "$_a" ] || [ "${_a#* --help}" != "$_a" ]; then
+ command spack env activate "$@";
+ else
+ stdout="$(command spack $_sp_flags env activate --sh "$@")" || return;
+ eval "$stdout";
+ fi
+ ;;
+ deactivate)
+ _a=" $@";
+ if [ "${_a#* --sh}" != "$_a" ] || [ "${_a#* --csh}" != "$_a" ]; then
+ command spack env deactivate "$@";
+ else
+ if [ -n "$*" ]; then
+ command spack env deactivate -h;
+ else
+ stdout="$(command spack $_sp_flags env deactivate --sh)" || return;
+ eval "$stdout";
+ fi;
+ fi
+ ;;
+ *)
+ command spack env $_sp_arg "$@"
+ ;;
+ esac;
+ fi;
+ return
+ ;;
+ "load" | "unload")
+ _a=" $@";
+ if [ "${_a#* --sh}" != "$_a" ] || [ "${_a#* --csh}" != "$_a" ] || [ "${_a#* -h}" != "$_a" ] || [ "${_a#* --list}" != "$_a" ] || [ "${_a#* --help}" != "$_a" ]; then
+ command spack $_sp_flags $_sp_subcommand "$@";
+ else
+ stdout="$(command spack $_sp_flags $_sp_subcommand --sh "$@")" || return;
+ eval "$stdout";
+ fi
+ ;;
+ *)
+ command spack $_sp_flags $_sp_subcommand "$@"
+ ;;
+ esac
+}; export -f _spack_shell_wrapper
+function ml() {  eval "$($LMOD_DIR/ml_cmd "$@")"
+}; export -f ml
+function spack() {  : this is a shell function from: /glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/share/spack/setup-env.sh;
+ : the real spack script is here: /glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/bin/spack;
+ _spack_shell_wrapper "$@";
+ return $?
+}; export -f spack
+CC=/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/lib/spack/env/gcc/gcc; export CC
+CMAKE_PREFIX_PATH=/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/perl-5.36.0-anfitppgefpfm45xszj5mlmkwm2k345m:/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/m4-1.4.19-5alq4n7vhsriwhpvdj7sebgfrtpsizac; export CMAKE_PREFIX_PATH
+CVS_RSH=ssh; export CVS_RSH
+CXX=/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/lib/spack/env/gcc/g++; export CXX
+F77=/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/lib/spack/env/gcc/gfortran; export F77
+FC=/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/lib/spack/env/gcc/gfortran; export FC
+HISTCONTROL=ignoreboth; export HISTCONTROL
+HISTFILE=/glade/u/home/benkirk/.bash_history.casper; export HISTFILE
+HISTSIZE=1024; export HISTSIZE
+HOME=/glade/u/home/benkirk; export HOME
+HOSTNAME=casper-login1; export HOSTNAME
+INFOPATH=:/usr/local/share/info:/usr/share/info; export INFOPATH
+KDEDIRS=/usr; export KDEDIRS
+LC_ALL=C; export LC_ALL
+LESSOPEN='||/usr/bin/lesspipe.sh %s'; export LESSOPEN
+LOGNAME=benkirk; export LOGNAME
+LS_COLORS='no=00:fi=00:di=01;31:ln=01;34:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=01;35:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:'; export LS_COLORS
+M4=/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/m4-1.4.19-5alq4n7vhsriwhpvdj7sebgfrtpsizac/bin/m4; export M4
+MAIL=/var/spool/mail/benkirk; export MAIL
+MANPATH=/usr/local/share/man:/usr/share/man:/opt/pbs/share/man; export MANPATH
+OMP_NUM_THREADS=1; export OMP_NUM_THREADS
+PATH=/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/perl-5.36.0-anfitppgefpfm45xszj5mlmkwm2k345m/bin:/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/m4-1.4.19-5alq4n7vhsriwhpvdj7sebgfrtpsizac/bin:/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/lib/spack/env/gcc:/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/lib/spack/env/case-insensitive:/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/lib/spack/env:/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/bin:/usr/lib64/qt-3.3/bin:/glade/u/apps/dav/opt/lmod/8.7.13/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/usr/lpp/mmfs/bin:/opt/ibutils/bin:/sbin:/bin:/opt/pbs/bin; export PATH
+#PWD=/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths; export PWD
+QTDIR=/usr/lib64/qt-3.3; export QTDIR
+QTINC=/usr/lib64/qt-3.3/include; export QTINC
+QTLIB=/usr/lib64/qt-3.3/lib; export QTLIB
+QT_GRAPHICSSYSTEM_CHECKED=1; export QT_GRAPHICSSYSTEM_CHECKED
+QT_PLUGIN_PATH=/usr/lib64/kde4/plugins:/usr/lib/kde4/plugins; export QT_PLUGIN_PATH
+SCRATCH=/glade/scratch/benkirk/; export SCRATCH
+SHELL=/bin/bash; export SHELL
+SHLVL=2; export SHLVL
+SPACK_CC=/usr/bin/gcc; export SPACK_CC
+SPACK_CC_RPATH_ARG=-Wl,-rpath,; export SPACK_CC_RPATH_ARG
+SPACK_COMPILER_SPEC=gcc@4.8.5; export SPACK_COMPILER_SPEC
+SPACK_CXX=/usr/bin/g++; export SPACK_CXX
+SPACK_CXX_RPATH_ARG=-Wl,-rpath,; export SPACK_CXX_RPATH_ARG
+SPACK_DEBUG_LOG_DIR=/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths; export SPACK_DEBUG_LOG_DIR
+SPACK_DEBUG_LOG_ID=autoconf-iry7xwx; export SPACK_DEBUG_LOG_ID
+SPACK_DTAGS_TO_ADD=--disable-new-dtags; export SPACK_DTAGS_TO_ADD
+SPACK_DTAGS_TO_STRIP=--enable-new-dtags; export SPACK_DTAGS_TO_STRIP
+SPACK_ENV_PATH=/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/lib/spack/env:/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/lib/spack/env/case-insensitive:/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/lib/spack/env/gcc; export SPACK_ENV_PATH
+SPACK_F77=/usr/bin/gfortran; export SPACK_F77
+SPACK_F77_RPATH_ARG=-Wl,-rpath,; export SPACK_F77_RPATH_ARG
+SPACK_FC=/usr/bin/gfortran; export SPACK_FC
+SPACK_FC_RPATH_ARG=-Wl,-rpath,; export SPACK_FC_RPATH_ARG
+SPACK_INCLUDE_DIRS=''; export SPACK_INCLUDE_DIRS
+SPACK_LINKER_ARG=-Wl,; export SPACK_LINKER_ARG
+SPACK_LINK_DIRS=''; export SPACK_LINK_DIRS
+SPACK_PYTHON=/usr/bin/python3; export SPACK_PYTHON
+SPACK_ROOT=/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack; export SPACK_ROOT
+SPACK_RPATH_DIRS=/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/lib:/glade/work/benkirk/bugreports/spack/autoconf@2.17_with_padded_paths/spack/opt/spack/__spack_path_placeholder__/__spack_path_pla/linux-centos7-haswell/gcc-4.8.5/autoconf-2.71-iry7xwxgdf7wtra54uhz4epyvzooy3z5/lib64; export SPACK_RPATH_DIRS
+SPACK_SHORT_SPEC='autoconf@2.71%gcc@4.8.5 build_system=autotools arch=linux-centos7-haswell/iry7xwx'; export SPACK_SHORT_SPEC
+SPACK_SYSTEM_DIRS=/bin:/usr/bin:/usr/local/bin:/bin64:/usr/bin64:/usr/local/bin64:/include:/usr/include:/usr/local/include:/lib:/usr/lib:/usr/local/lib:/lib64:/usr/lib64:/usr/local/lib64:/:/usr:/usr/local; export SPACK_SYSTEM_DIRS
+SPACK_TARGET_ARGS='-march=core-avx2 -mtune=core-avx2'; export SPACK_TARGET_ARGS
+SSH_AUTH_SOCK=/tmp/ssh-arDIf3Nyvb/agent.172231; export SSH_AUTH_SOCK
+SSH_CLIENT='76.25.75.46 50746 22'; export SSH_CLIENT
+SSH_CONNECTION='76.25.75.46 50746 128.117.211.221 22'; export SSH_CONNECTION
+SSH_TTY=/dev/pts/28; export SSH_TTY
+TERM=xterm-256color; export TERM
+TMPDIR=/glade/scratch/benkirk; export TMPDIR
+USER=benkirk; export USER
+WORK=/glade/work/benkirk/; export WORK
+XDG_DATA_DIRS=/glade/u/home/benkirk/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share; export XDG_DATA_DIRS
