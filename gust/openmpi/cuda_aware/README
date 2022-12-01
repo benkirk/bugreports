@@ -1,0 +1,11 @@
+
+# OpenMPI version:
+. config_env_openmpi.sh
+make clean all
+qsub ./run_openmpi.sh
+
+
+# Cray-MPICH version:
+. config_env_cray-mpich.sh
+make clean all
+qsub ./run_cray-mpich.sh

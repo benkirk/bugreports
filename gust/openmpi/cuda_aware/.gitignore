@@ -1,0 +1,4 @@
+mpi_cpu_gpu_mem_options
+run_*.sh.o*
+*~
+core
