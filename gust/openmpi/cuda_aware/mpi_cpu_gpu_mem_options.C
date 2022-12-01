@@ -10,7 +10,7 @@
 #include "cuda_runtime.h"
 
 
-enum MemType { CPU=0, GPU_Device, GPU_Managed };
+enum MemType { CPU=0, GPU, GPU_Managed };
 
 
 // anonymous namespace to hold "global" variables, but restricted to this translation unit
@@ -28,7 +28,6 @@ namespace {
       exit(EXIT_FAILURE);
     }
     assert(cudaSuccess == err_n);
-
     return 0;
   }
 
@@ -66,7 +65,7 @@ T* allocate(const std::size_t cnt, const MemType mem_type)
       assert (NULL != buffer);
       return buffer;
 
-    case GPU_Device:
+    case GPU:
       CUDA_CHECK(cudaMalloc((void**) &buffer, cnt*sizeof(T)));
       return buffer;
 
@@ -97,7 +96,7 @@ int deallocate (T *buffer, const MemType mem_type)
       buffer = NULL;
       break;
 
-    case GPU_Device:
+    case GPU:
     case GPU_Managed:
       CUDA_CHECK(cudaFree(buffer));
       buffer = NULL;
@@ -126,7 +125,7 @@ int main (int argc, char **argv)
       switch(opt)
         {
 	case 'd':
-	  mem_type = GPU_Device;
+	  mem_type = GPU;
 	  break;
 
 	case 'm':
@@ -167,7 +166,7 @@ int main (int argc, char **argv)
 	case CPU:
 	  std::cout << "Allocating CPU host memory for \"buf\"\n";
 	  break;
-	case GPU_Device:
+	case GPU:
 	  std::cout << "Allocating GPU device memory for \"buf\"\n";
 	  break;
 	case GPU_Managed:
@@ -210,7 +209,6 @@ int main (int argc, char **argv)
 
       deallocate(buf,  mem_type);
     }
-
 
   MPI_Finalize();
 
