@@ -1,0 +1,14 @@
+diff --git a/var/spack/repos/builtin/packages/autoconf/package.py b/var/spack/repos/builtin/packages/autoconf/package.py
+index 6152215..30e071f 100644
+--- a/var/spack/repos/builtin/packages/autoconf/package.py
++++ b/var/spack/repos/builtin/packages/autoconf/package.py
+@@ -83,7 +83,8 @@ def patch(self):
+         # We save and restore the modification timestamp of the file to prevent
+         # regeneration of the respective man page:
+         with keep_modification_time(patched_file):
+-            filter_file("^#! @PERL@ -w", "#! /usr/bin/env perl", patched_file)
++            filter_file("^#! @PERL@ -w", "#! /usr/bin/env perl", patched_file) # this will patch <=2.96, which begin with #! @PERL@ -w shebang 
++            filter_file("^#! @PERL@",    "#! /usr/bin/env perl", patched_file) # this will pick up >2.70, which removed -w (#! @PERL@ shebang)
+         if self.version == Version("2.62"):
+             # skip help2man for patched autoheader.in and autoscan.in
+             touch("man/autoheader.1")

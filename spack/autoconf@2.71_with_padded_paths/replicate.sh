@@ -15,4 +15,4 @@ spack debug report
 spack maintainers autoconf
 
 spack spec -I autoconf@2.71
-spack install autoconf@2.71
+spack install autoconf@2.71 autoconf@2.70 autoconf@2.69
