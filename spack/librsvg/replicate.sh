@@ -6,13 +6,14 @@
 
 type spack >/dev/null 2>&1 || exit 1
 
-spack config add "config:install_tree:padded_length: 128"
+#spack config add "config:install_tree:padded_length: 128"
 
+spack config blame packages
 spack config blame config
 
 spack debug report
 
-spack maintainers autoconf
+spack maintainers librsvg
 
-spack spec -I autoconf@2.71
-spack install autoconf@2.71 autoconf@2.70 autoconf@2.69 autoconf@2.62
+spack spec -I librsvg ^perl@5.16.3~cpanm+shared+threads ^python@3.9
+spack install librsvg ^perl@5.16.3~cpanm+shared+threads ^python@3.9
