@@ -1,19 +1,22 @@
-[ -d ./spack ] || git clone -c feature.manyFiles=true --branch releases/v0.19 https://github.com/spack/spack.git
+#[ -d ./spack ] || git clone -c feature.manyFiles=true --branch releases/latest git@github.com:benkirk/spack.git
+[ -d ./spack ] || git clone -c feature.manyFiles=true --branch add_gimp git@github.com:benkirk/spack.git
 
-. ../sanitze_env.sh
+. ./config_env.sh || exit 1
 
-. spack/share/spack/setup-env.sh 
+spack config add "config:install_tree:padded_length: 0"
 
-type spack >/dev/null 2>&1 || exit 1
-
-#spack config add "config:install_tree:padded_length: 128"
-
-spack config blame packages
-spack config blame config
+for arg in repos mirrors concretizer packages config modules compilers; do
+    spack config blame ${arg} && echo && echo # show our current configuration, with what comes from where
+done
 
 spack debug report
 
-spack maintainers librsvg
+spack maintainers gimp
 
-spack spec -I librsvg ^perl@5.16.3~cpanm+shared+threads ^python@3.9
-spack install librsvg ^perl@5.16.3~cpanm+shared+threads ^python@3.9
+
+spack add librsvg@2.51.0 librsvg@2.44.14 librsvg@2.40.21
+spack concretize --fresh
+spack install --no-cache --no-check-signature & spack install --no-cache --no-check-signature & spack install --no-cache --no-check-signature & spack install --no-cache --no-check-signature
+wait
+spack install --verbose --no-cache --deprecated --no-check-signature || exit 1
+exit 0
