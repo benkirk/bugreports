@@ -1,5 +1,5 @@
 #[ -d ./spack ] || git clone -c feature.manyFiles=true --branch releases/latest git@github.com:benkirk/spack.git
-[ -d ./spack ] || git clone -c feature.manyFiles=true --branch add_gimp git@github.com:benkirk/spack.git
+[ -d ./spack ] || git clone -c feature.manyFiles=true git@github.com:benkirk/spack.git
 
 . ./config_env.sh || exit 1
 
@@ -11,10 +11,10 @@ done
 
 spack debug report
 
-spack maintainers gimp
+spack maintainers librsvg
 
 
-spack add librsvg@2.51.0 librsvg@2.44.14 librsvg@2.40.21
+spack add librsvg@2.40.21 librsvg@2.44.14 librsvg@2.51.0
 spack concretize --fresh
 spack install --no-cache --no-check-signature & spack install --no-cache --no-check-signature & spack install --no-cache --no-check-signature & spack install --no-cache --no-check-signature
 wait

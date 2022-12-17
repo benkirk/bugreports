@@ -32,11 +32,6 @@ spack:
         - /glade/work/benkirk/my_spack_playground/deploy/view/CentOS-compilers/gcc/11.3.0/lib64
 
   packages:
-    librsvg:
-      #buildable: False
-      externals:
-      - spec: librsvg@2.40.21
-        prefix: /glade/work/benkirk/bugreports/spack/gimp/deps/librsvg-2.40.21/_inst
     all:
       target: [x86_64]
 EOF
