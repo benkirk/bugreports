@@ -21,13 +21,13 @@ set +x
 
 # other compilers...
 ## Intel OneAPI
-type module >/dev/null 2>&1 && module load oneapi
+type module >/dev/null 2>&1 && module load intel
 set -x
-icx     -I. -c -g ./odf_init.c       && echo "Success!" || echo "FAIL!!!"
+icc     -I. -c -g ./odf_init.c       && echo "Success!" || echo "FAIL!!!"
 set +x
 
-## Cray CPE
-type module >/dev/null 2>&1 && module load cce
-set -x
-cc     -I. -c -g ./odf_init.c       && echo "Success!" || echo "FAIL!!!"
-set +x
+# ## Cray CPE
+# type module >/dev/null 2>&1 && module load cce
+# set -x
+# cc     -I. -c -g ./odf_init.c       && echo "Success!" || echo "FAIL!!!"
+# set +x

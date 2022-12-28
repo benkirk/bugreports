@@ -1,5 +1,5 @@
 #[ -d ./spack ] || git clone -c feature.manyFiles=true --branch releases/latest git@github.com:benkirk/spack.git
-[ -d ./spack ] || git clone -c feature.manyFiles=true --branch add_gimp git@github.com:benkirk/spack.git
+[ -d ./spack ] || git clone -c feature.manyFiles=true --branch gimp_updates git@github.com:benkirk/spack.git
 
 . ./config_env.sh || exit 1
 
@@ -14,12 +14,12 @@ spack debug report
 spack maintainers gimp
 
 
-spack add libde265 x265
-spack concretize --fresh
-spack install --no-cache --no-check-signature & spack install --no-cache --no-check-signature & spack install --no-cache --no-check-signature & spack install --no-cache --no-check-signature
-wait
-spack install --verbose --no-cache --deprecated --no-check-signature || exit 1
-exit 0
+# spack add libde265 x265
+# spack concretize --fresh
+# spack install --no-cache --no-check-signature & spack install --no-cache --no-check-signature & spack install --no-cache --no-check-signature & spack install --no-cache --no-check-signature
+# wait
+# spack install --verbose --no-cache --deprecated --no-check-signature || exit 1
+# exit 0
 
 # spack add meson ninja pkgconfig cmake libelf python
 # spack concretize --fresh
