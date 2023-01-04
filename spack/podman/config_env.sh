@@ -9,11 +9,18 @@ type spack >/dev/null 2>&1 || exit 1
 cat > spack.yaml <<EOF
 spack:
   config:
-    source_cache: /glade/scratch/${USER}/spack_caches/source
+    source_cache: ${SCRATCH}/spack_caches/source
   concretizer:
     unify: false
     targets:
       granularity: generic
+  packages:
+    all:
+      target: [x86_64]
+EOF
+
+if [ -x /glade/work/benkirk/my_spack_playground/deploy/view/CentOS-compilers/gcc/11.3.0/bin/gcc ]; then
+    cat >> spack.yaml <<EOF
   compilers:
   - compiler:
       spec: gcc@11.3.0
@@ -31,10 +38,8 @@ spack:
       extra_rpaths:
         - /glade/work/benkirk/my_spack_playground/deploy/view/CentOS-compilers/gcc/11.3.0/lib64
 
-  packages:
-    all:
-      target: [x86_64]
 EOF
+fi
 
 spack env remove -y testenv 2>/dev/null
 spack env create testenv ./spack.yaml 2>/dev/null

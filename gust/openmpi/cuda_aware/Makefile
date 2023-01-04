@@ -1,13 +1,16 @@
-all: mpi_cpu_gpu_mem_options
+all: hello_world_mpi_send_recv mpi_cpu_gpu_mem_options
+
+hello_world_mpi_send_recv: hello_world_mpi_send_recv.C
+	mpicxx -g -o hello_world_mpi_send_recv hello_world_mpi_send_recv.C -lcuda -lcudart
 
 mpi_cpu_gpu_mem_options: mpi_cpu_gpu_mem_options.C
 	mpicxx -g -o mpi_cpu_gpu_mem_options mpi_cpu_gpu_mem_options.C -lcuda -lcudart
 
-run_CPU: mpi_cpu_gpu_mem_options
-	@echo "------------------"
-	@echo "CPU Memory:"
-	@echo "------------------"
-	mpiexec $(MPI_ARGS) ./mpi_cpu_gpu_mem_options || echo "Failed"
+run_hello: hello_world_mpi_send_recv
+	@echo "----------------------------"
+	@echo "Hello, World with a send/rev"
+	@echo "----------------------------"
+	mpiexec $(MPI_ARGS) ./hello_world_mpi_send_recv || echo "Failed"
 	@echo && echo && echo
 
 run_GPUd: mpi_cpu_gpu_mem_options

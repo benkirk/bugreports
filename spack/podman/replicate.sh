@@ -18,7 +18,7 @@ spack add podman@4
 
 spack concretize --fresh
 # populate our source cache mirror
-spack mirror create --directory /glade/scratch/${USER}/spack_caches/source --all
+spack mirror create --directory ${SCRATCH}/spack_caches/source --all
 spack install --deprecated --no-check-signature & spack install --deprecated --no-check-signature & spack install --deprecated --no-check-signature & spack install --deprecated --no-check-signature
 wait
 spack install --verbose --deprecated --no-check-signature || exit 1
