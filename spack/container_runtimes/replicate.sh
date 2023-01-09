@@ -1,4 +1,4 @@
-[ -d ./spack ] || git clone -c feature.manyFiles=true --branch podman_refresh git@github.com:benkirk/spack.git
+[ -d ./spack ] || git clone -c feature.manyFiles=true --branch releases/v0.19-BSK git@github.com:benkirk/spack.git
 #[ -d ./spack ] || git clone -c feature.manyFiles=true --branch gimp_updates git@github.com:benkirk/spack.git
 
 . ./config_env.sh || exit 1
@@ -11,13 +11,16 @@ done
 
 spack debug report
 
-spack maintainers podman
+spack maintainers charliecloud
 
-spack add slirp4netns podman@4 charliecloud
+
+spack add charliecloud+squash^libfuse~utils singularityce~suid podman@4 slirp4netns
 
 spack concretize --fresh
+
 # populate our source cache mirror
 spack mirror create --directory ${SCRATCH}/spack_caches/source --all
+
 spack install --deprecated --no-check-signature & spack install --deprecated --no-check-signature & spack install --deprecated --no-check-signature & spack install --deprecated --no-check-signature
 wait
 spack install --verbose --deprecated --no-check-signature || exit 1
