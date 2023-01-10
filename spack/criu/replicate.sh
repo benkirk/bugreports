@@ -2,6 +2,7 @@
 
 . ./config_env.sh || exit 1
 
+spack external find perl
 spack config add "config:install_tree:padded_length: 128"
 
 for arg in repos mirrors concretizer packages config modules compilers; do
@@ -12,8 +13,7 @@ spack debug report
 
 spack maintainers criu
 
-spack install --add binutils
-spack add criu
+spack add criu^protobuf@3.19
 
 spack concretize --fresh
 
