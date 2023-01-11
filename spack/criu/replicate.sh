@@ -13,13 +13,27 @@ spack debug report
 
 spack maintainers criu
 
-spack add criu^protobuf@3.19
+spack add dmtcp protobuf@3.19 \
+      nftables@0.8.4 ^libnftnl@1.1.5 libnftnl@1.1.5 \
+      criu^protobuf@3.19^nftables@0.8.4 ^libnftnl@1.1.5
 
 spack concretize --fresh
 
 # populate our source cache mirror
 spack mirror create --directory ${SCRATCH}/spack_caches/source --all
 
+#spack install --verbose --deprecated --no-check-signature || exit 1
+
 spack install --deprecated --no-check-signature & spack install --deprecated --no-check-signature & spack install --deprecated --no-check-signature & spack install --deprecated --no-check-signature
 wait
 spack install --verbose --deprecated --no-check-signature || exit 1
+
+
+
+spack add criu^protobuf@3.19^nftables@0.8.4 ^libnftnl@1.1.5
+
+spack concretize --fresh
+# populate our source cache mirror
+spack mirror create --directory ${SCRATCH}/spack_caches/source --all
+
+spack install --deprecated --no-check-signature || exit 1

@@ -35,28 +35,33 @@ spack:
       target: [x86_64]
 EOF
 
-[ -x /glade/work/benkirk/my_spack_playground/deploy/view/CentOS-compilers/gcc/11.3.0/bin/gcc ] && \
-    cat >> spack.yaml <<EOF
+found=false
+for try_path in CentOS Gust ; do
+    [ -x /glade/work/benkirk/my_spack_playground/deploy/view/${try_path}-compilers/gcc/11.3.0/bin/gcc ] && \
+        found=true && \
+        cat >> spack.yaml <<EOF
   compilers:
   - compiler:
       spec: gcc@11.3.0
       paths:
-        cc: /glade/work/benkirk/my_spack_playground/deploy/view/CentOS-compilers/gcc/11.3.0/bin/gcc
-        cxx: /glade/work/benkirk/my_spack_playground/deploy/view/CentOS-compilers/gcc/11.3.0/bin/g++
-        f77: /glade/work/benkirk/my_spack_playground/deploy/view/CentOS-compilers/gcc/11.3.0/bin/gfortran
-        fc: /glade/work/benkirk/my_spack_playground/deploy/view/CentOS-compilers/gcc/11.3.0/bin/gfortran
+        cc: /glade/work/benkirk/my_spack_playground/deploy/view/${try_path}-compilers/gcc/11.3.0/bin/gcc
+        cxx: /glade/work/benkirk/my_spack_playground/deploy/view/${try_path}-compilers/gcc/11.3.0/bin/g++
+        f77: /glade/work/benkirk/my_spack_playground/deploy/view/${try_path}-compilers/gcc/11.3.0/bin/gfortran
+        fc: /glade/work/benkirk/my_spack_playground/deploy/view/${try_path}-compilers/gcc/11.3.0/bin/gfortran
       flags:
-        ldflags: -L/glade/work/benkirk/my_spack_playground/deploy/view/CentOS-compilers/gcc/11.3.0/lib64
-      operating_system: centos7
+        ldflags: -L/glade/work/benkirk/my_spack_playground/deploy/view/${try_path}-compilers/gcc/11.3.0/lib64
+      operating_system: $(spack arch -o)
       target: x86_64
       modules: []
       environment: {}
       extra_rpaths:
-        - /glade/work/benkirk/my_spack_playground/deploy/view/CentOS-compilers/gcc/11.3.0/lib64
+        - /glade/work/benkirk/my_spack_playground/deploy/view/${try_path}-compilers/gcc/11.3.0/lib64
 
 EOF
+    [[ true == ${found} ]] && break
+done
 
-if [[ true == $remove_env ]]; then
+if [[ true == ${remove_env} ]]; then
     spack env remove -y criu_env 2>/dev/null
     spack env create criu_env ./spack.yaml 2>/dev/null
 fi
