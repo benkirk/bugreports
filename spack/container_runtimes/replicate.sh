@@ -1,4 +1,4 @@
-[ -d ./spack ] || git clone -c feature.manyFiles=true --branch releases/v0.19-BSK git@github.com:benkirk/spack.git
+[ -d ./spack ] || git clone -c feature.manyFiles=true --branch releases/v0.19.1-BSK git@github.com:benkirk/spack.git
 #[ -d ./spack ] || git clone -c feature.manyFiles=true --branch gimp_updates git@github.com:benkirk/spack.git
 
 . ./config_env.sh || exit 1
@@ -14,7 +14,7 @@ spack debug report
 spack maintainers charliecloud
 
 
-spack add charliecloud+squash^libfuse~utils singularityce~suid podman@4 slirp4netns
+spack add charliecloud+squash^libfuse~utils singularityce~suid apptainer~suid podman@4 slirp4netns
 
 spack concretize --fresh
 
