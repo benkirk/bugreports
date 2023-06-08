@@ -25,11 +25,15 @@ log=$SCRATCH//launch_test/env.${NNODES}.${PPN}.${PBS_JOBID}.out
 
 env | sort | uniq
 
+echo "Nodes List="
+cat ${PBS_NODEFILE} | sort | uniq
 
+#MPIEXEC_OPTS="--verbose --restart"
+MPIEXEC_OPTS="--verbose"
 
-for node in $(cat $PBS_NODEFILE | sort | uniq); do
-    ssh ${node} "hostname && $(pwd)/ss.sh $SCRATCH/launch_test/ss-${node}.${NNODES}.${PPN}.${PBS_JOBID}.out" &
-done
+# for node in $(cat $PBS_NODEFILE | sort | uniq); do
+#     ssh ${node} "$(pwd)/ss.sh $SCRATCH/launch_test/ss-${node}.${NNODES}.${PPN}.${PBS_JOBID}.out 2>&1" >/dev/null 2>&1 &
+# done
 
 step=0
 
@@ -37,24 +41,20 @@ while true ; do
     rm -f ${exec}
     cp /usr/bin/env ${exec}
 
-    tstart=$(date +%s)
-    mpiexec -n $NRANKS -ppn $PPN --verbose ${exec} > ${log} 2>&1 || \
-        { grep "rank" ${log} | sort | uniq; echo "FAILED at $(date)"; exit 1; }
-    grep PALS ${log} | egrep -v "RANK|LOCAL|NODE" | sort | uniq
-    tstop=$(date +%s)
-    echo "launched ${exe} on ${NNODES} nodes / ${NRANKS} ranks"
-    echo $((${tstop}-${tstart})) " elapsed seconds"
+    # tstart=$(date +%s)
+    # mpiexec -n $NRANKS -ppn $PPN ${MPIEXEC_OPTS} ${exec} > ${log} 2>&1 || \
+    #     { grep "rank" ${log} | sort | uniq; echo "FAILED at $(date)"; exit 1; }
+    # #grep PALS ${log} | egrep -v "RANK|LOCAL|NODE" | sort | uniq
+    # tstop=$(date +%s)
+    # echo "launched ${exec} on ${NNODES} nodes / ${NRANKS} ranks ; $((${tstop}-${tstart})) elapsed seconds"
 
 
     tstart=$(date +%s)
-    mpiexec -n $NRANKS -ppn $PPN --verbose ${hw} > ${log}.hw 2>&1 ||
+    mpiexec -n $NRANKS -ppn $PPN ${MPIEXEC_OPTS} ${hw} > ${log}.hw 2>&1 ||
         { echo "FAILED at $(date)"; exit 1; }
     tstop=$(date +%s)
-    echo "launched ${hw} on ${NNODES} nodes / ${NRANKS} ranks"
-    echo $((${tstop}-${tstart})) " elapsed seconds"
-
+    echo "launched ${hw} on ${NNODES} nodes / ${NRANKS} ranks ; $((${tstop}-${tstart})) elapsed seconds"
 
     step=$((${step}+1))
     sleep 2s && echo && echo "step ${step}" && echo
-
 done

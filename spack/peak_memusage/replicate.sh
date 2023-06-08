@@ -1,4 +1,4 @@
-[ -d ./spack ] || git clone -c feature.manyFiles=true --branch releases/v0.19-BSK git@github.com:benkirk/spack.git
+[ -d ./spack ] || git clone -c feature.manyFiles=true --branch releases/v0.19.2-BSK git@github.com:benkirk/spack.git
 
 . ./config_env.sh || exit 1
 
