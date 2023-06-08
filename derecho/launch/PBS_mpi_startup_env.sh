@@ -1,10 +1,10 @@
 #!/bin/bash
 #PBS -N launchtest
 #PBS -A SCSG0001
-#PBS -q main
+#PBS -q system
 #PBS -j oe
 #PBS -k oed
-#PBS -l walltime=00:10:00
+#PBS -l walltime=00:05:00
 #PBS -l select=1:ncpus=128:mpiprocs=128:mem=200G
 
 module load crayenv/23.03 >/dev/null 2>&1
