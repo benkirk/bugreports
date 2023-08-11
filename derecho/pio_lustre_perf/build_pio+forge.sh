@@ -29,17 +29,8 @@ which cmake && cmake --version || exit 1
 
 rm -rf BUILD && mkdir BUILD && cd BUILD || exit 1
 
-# CC=$(which cc) FC=$(which ftn) \
-#   cmake -Wno-dev \
-#   -DFFLAGS="-ffixed-line-length-none -ffree-line-length-none -fallow-argument-mismatch" \
-#   -DFCFLAGS="-ffixed-line-length-none -ffree-line-length-none" \
-#   -DNetCDF_C_PATH=${topdir}/install/netcdf \
-#   -DNetCDF_Fortran_PATH=${topdir}/install/netcdf \
-#   -DPnetCDF_PATH=${topdir}/install/pnetcdf \
-#   -DCMAKE_INSTALL_PREFIX=${topdir}/install/pio \
-#   ${topdir}/ParallelIO
 
-CC="$(which cc)" FC="$(which ftn) -ffixed-line-length-none -ffree-line-length-none" \
+CC="$(which cc) -g" FC="$(which ftn) -g -ffixed-line-length-none -ffree-line-length-none" \
   cmake -Wno-dev \
   -DNetCDF_C_PATH=${topdir}/install/netcdf \
   -DNetCDF_Fortran_PATH=${topdir}/install/netcdf \
