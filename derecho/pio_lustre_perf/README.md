@@ -1,10 +1,10 @@
 # ParallelIO / Cray-MPICH / Lustre Stripe Size Sensitivity
 
-We are seeing an extreme sensitivity to lustre stripe size for a particular MPI-IO file access pattern, as implemented through the ParallelIO->NetCDF->PNetCDF->MPI-IO stack of libraries.  This has been demonstrated on two different systems, Derecho at NCAR and Perlmutter at NERSC. For smaller stripe sizes, and excessive amout of time is spent within `MPI_File_write_at_all`, with no further granularity presently available.
+We are seeing an extreme sensitivity to lustre stripe size for a particular MPI-IO file access pattern, as implemented through the ParallelIO->NetCDF->PNetCDF->MPI-IO stack of libraries.  This has been demonstrated on two different systems, Derecho at NCAR and Perlmutter at NERSC. For smaller stripe sizes, an excessive amount of time is spent within `MPI_File_write_at_all`, with no further granularity presently available.
 
 ## Building a Replication Case
 
-The smallest demonstration case to date requires 16 128-core nodes (2,048 MPI ranks) and access to a Lustre filesystem.  The software stack is fairly complex, but can be build on top of a base Cray environment using the scripts provided in [this repo](https://github.com/benkirk/bugreports/tree/main).  Running `make all` in the `derecho/pio_lustre_perf` subdirectory performs the follwing:
+The smallest demonstration case to date requires 16 128-core nodes (2,048 MPI ranks) and access to a Lustre filesystem.  The software stack is fairly complex, but can be built on top of a base Cray environment using the scripts provided in [this repo](https://github.com/benkirk/bugreports/tree/main).  Running `make all` in the `derecho/pio_lustre_perf` subdirectory performs the follwing:
 * Sources a common Cray environment module set using `config_env.sh`. Currently tested with the following module stack:
   ```
   Currently Loaded Modules:
@@ -16,7 +16,7 @@ The smallest demonstration case to date requires 16 128-core nodes (2,048 MPI ra
 * Builds `pnetcdf`,
 * Builds `hdf5`,
 * Builds `netcdf-c` and `netcdf-fortran`,
-* Builds `ParallelIO` using all the abode dependencies.
+* Builds `ParallelIO` using all the above dependencies.
 
 A sample runscript is also included in `runme.sh` for PBS queueing environments.  The resulting executable, `install/pio/bin/pioperf`, can be run directly with no command line arguments required.  The standard output includes 2 lines labeled `RESULT`, each corresponding to a different parallel, 19GB file write.  For example, 
 ```
