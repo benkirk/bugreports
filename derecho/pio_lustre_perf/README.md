@@ -29,7 +29,7 @@ $ grep RESULT ./logs/c48_S{001M,128M}/pioperf-*.o*
 ./logs/c48_S128M/pioperf-c48_S128M.o1256800:  RESULT: ...     2785.99        6.66
 ```
 
-The first case writes decomposed variables with record dimension, the second adds a single addtional variable `char rundate(strlen)` ; where `strlen=13`.  The last two real numbers on each line are the write bandwidth and time, respectively.  Both writes slow with smaller stripe size, but the second one very dramatically: a factor of ~30X between 1MB and 128MB stripe sizes as shown in the example output above (2785.99/97.91).
+The first case writes decomposed variables with record dimension, the second adds a single addtional variable `char rundate(strlen)` ; where `strlen=13`.  The last two real numbers on each line are the write bandwidth and time, respectively.  The first file written appears relatively insensitive to smaller stripe size, but the second one slows very dramatically: a factor of ~30X between 1MB and 128MB stripe sizes as shown in the example output above (2785.99/97.91).
 
 ## Observations 
 
@@ -38,15 +38,20 @@ The test case performance has been compared on IBM Spectrum Scale (GPFS) and Lus
 Profiling results (shown below) indicate that the smaller the Lustre stripe size, the more time is spent in `MPI_File_write_at_all`, called from `ncmpio_read_write`.  No unusual sensitivity to stripe count has been observed. Unfortunately, all profiling steps executed to date become "opaque" at the `MPI_File_write_at_all` when run under Cray-MPICH, so the source of this slowdown is still elusive.
 
 ### Profiling Results
+Several application profiles created using Linaro's MAP profiler are included below.
+
 #### GPFS
+We observe the best performance when writing to a (fairly old) GPFS system.
 
 ![gpfs](https://github.com/benkirk/bugreports/assets/2366572/4d83b8de-d0c1-4945-a1d5-63e5ed07095f)
 
 #### Lustre, 48X 128MB Stripes
+Increasing the lustre stripe size to as high as 128MB approaches the GPFS result, but still lags.
 
 ![lustre-48-128M](https://github.com/benkirk/bugreports/assets/2366572/9942ff52-631f-4a25-bf92-d01b623960a5)
 
 
 #### Lustre, 48X 1MB Stripes
+For a 1MB Lustre stripe size, behavior of the first file write is similar, however the second file write slows dramatically, with nearly all execution time within `MPI_File_write_at_all`, called from `ncmpio_read_write`.
 
 ![lustre-48-1M](https://github.com/benkirk/bugreports/assets/2366572/3dc47e84-def3-4e3a-adf3-583b24bda22c)
