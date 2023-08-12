@@ -23,4 +23,4 @@ CXX=$(which CC) CC=$(which cc) FC=$(which ftn) F77=$(which ftn) \
 
 make -j 12 && make install || exit 1
 
-cd ${topdir} && rm -rf pnetcdf*/ pnetcdf*.tar.gz
+cd ${topdir} && rm -rf pnetcdf*/BUILD/ pnetcdf*.tar.gz

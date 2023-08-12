@@ -39,11 +39,17 @@ cat <<EOF > pioperf.nl
 EOF
 
 
+rm -f ./pioperf.*.nc
 
 export MPICH_MPIIO_AGGREGATOR_PLACEMENT_DISPLAY=1
 export MPICH_MPIIO_HINTS_DISPLAY=1
 export MPICH_MPIIO_STATS=1
 export MPICH_MPIIO_TIMERS=1
+export FORGE_SAMPLER_INTERVAL=5 # (ms)
 
 #mpiexec --label --line-buffer -n 2048 ${exe}
-map --connect ${exe}
+map --connect \
+    --processes=2048 \
+    --select-ranks=0,128,256,384,512,640,768,896,1024,1152,1280,1408,1536,1664,1792,1920 \
+    --start \
+    ${exe}

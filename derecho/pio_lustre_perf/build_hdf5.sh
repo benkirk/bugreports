@@ -26,4 +26,4 @@ CXX=$(which CC) CC=$(which cc) FC=$(which ftn) F77=$(which ftn) \
 
 make -j 12 V=0 && make install || exit 1
 
-cd ${topdir} && rm -rf hdf5*/ hdf5*.tar.gz
+cd ${topdir} && rm -rf hdf5*/BUILD/ hdf5*.tar.gz

@@ -30,4 +30,4 @@ CXX=$(which g++) CC=$(which gcc) \
 
 make -j 12 V=0 && make install || exit 1
 
-cd ${topdir} && rm -rf cmake*/ cmake*.tar.gz
+cd ${topdir} && rm -rf cmake*/BUILD/ cmake*.tar.gz
