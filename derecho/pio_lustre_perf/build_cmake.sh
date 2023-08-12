@@ -9,6 +9,7 @@ topdir=$(pwd)
 
 [ -x ${topdir}/install/cmake/bin/cmake ] && { echo "cmake already built..."; exit 0; }
 
+[-w /tmp/ ] && cd /tmp/ && pwd
 
 rm -rf cmake*.tar.gz
 

@@ -32,4 +32,4 @@ distclean:
 	git clean -xdf .
 
 dist:
-	cd .. && tar zcvf pio_lustre_perf/pio_lustre_perf.tar.gz pio_lustre_perf/{Makefile,*.sh}
+	cd .. && tar zcvf pio_lustre_perf/pio_lustre_perf.tar.gz pio_lustre_perf/{Makefile,README.md,*.sh}
