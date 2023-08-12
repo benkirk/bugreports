@@ -4,7 +4,7 @@ We are seeing an extreme sensitivity to lustre stripe size for a particular MPI-
 
 ## Building a Replication Case
 
-The smallest demonstration case to date requires 16 128-core nodes (2,048 MPI ranks) and access to a Lustre filesystem.  The software stack is fairly complex, but can be build on top of a base Cray environment using the scripts provided in [this repo](https://github.com/benkirk/bugreports/tree/main), or in .  Running `make all` in the `derecho/pio_lustre_perf` subdirectory performs the follwing:
+The smallest demonstration case to date requires 16 128-core nodes (2,048 MPI ranks) and access to a Lustre filesystem.  The software stack is fairly complex, but can be build on top of a base Cray environment using the scripts provided in [this repo](https://github.com/benkirk/bugreports/tree/main).  Running `make all` in the `derecho/pio_lustre_perf` subdirectory performs the follwing:
 * Sources a common Cray environment module set using `config_env.sh`. Currently tested with the following module stack:
   ```
   Currently Loaded Modules:
