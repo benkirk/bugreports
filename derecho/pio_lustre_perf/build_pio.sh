@@ -5,7 +5,7 @@
 
 topdir=$(pwd)
 
-[ -d ParallelIO ] || git clone -b bugtest/lustre https://github.com/jedwards4b/ParallelIO.git || exit 1
+[ -d ParallelIO ] || git clone -b bugfix/lustre https://github.com/jedwards4b/ParallelIO.git || exit 1
 
 cd ParallelIO || exit 1
 

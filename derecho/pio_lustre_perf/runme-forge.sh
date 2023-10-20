@@ -45,6 +45,7 @@ export MPICH_MPIIO_AGGREGATOR_PLACEMENT_DISPLAY=1
 export MPICH_MPIIO_HINTS_DISPLAY=1
 export MPICH_MPIIO_STATS=1
 export MPICH_MPIIO_TIMERS=1
+export MPICH_MPIIO_HINTS="pioperf*.nc:cray_cb_write_lock_mode=2:cray_cb_nodes_multiplier=12"
 export FORGE_SAMPLER_INTERVAL=5 # (ms)
 
 #mpiexec --label --line-buffer -n 2048 ${exe}

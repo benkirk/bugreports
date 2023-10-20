@@ -7,7 +7,7 @@
 #PBS -l walltime=00:05:00
 #PBS -l select=2:ncpus=128:mpiprocs=2:ompthreads=2:mem=200GB+1:ncpus=128:mpiprocs=4:ompthreads=4:mem=200GB
 
-module load crayenv/23.03 >/dev/null 2>&1
+module load ncarenv/23.09 >/dev/null 2>&1
 module reset >/dev/null 2>&1
 module list
 
@@ -15,21 +15,28 @@ rm -f hello_world_mpi
 
 make hello_world_mpi
 
-export OMP_WAIT_POLICY=PASSIVE
+result="SUCCESS"
+
+#export OMP_WAIT_POLICY=PASSIVE
 
 env | egrep "PBS|MPI|OMP|THR" | sort | uniq
 
 ### Run MPT MPI Program
 echo && echo && echo "Test 1"
 mpiexec ./hello_world_mpi \
-    || { echo "FAILED"; exit 1; }
+    || { result="FAILED"; echo "${result}"; exit 1; }
 
 echo && echo && echo "Test 2"
 mpiexec -n 2 ./hello_world_mpi : -n 1 ./hello_world_mpi \
-    || { echo "FAILED"; exit 1; }
+    || { result="FAILED"; echo "${result}"; exit 1; }
 
 echo && echo && echo "Test 3"
 mpiexec -n 4 -ppn 2 -env OMP_NUM_THREADS=2 ./hello_world_mpi : -n 4 -ppn 4 -env OMP_NUM_THREADS=4 ./hello_world_mpi \
-    || { echo "FAILED"; exit 1; }
+    || { result="FAILED"; echo "${result}"; }
 
-echo "SUCCESS"
+
+echo && echo && echo "Test 4"
+mpiexec -n 4 -ppn 4 -env OMP_NUM_THREADS=4 ./hello_world_mpi : -n 4 -ppn 2 -env OMP_NUM_THREADS=2 ./hello_world_mpi \
+    || { result="FAILED"; echo "${result}"; }
+
+echo "${result}"
