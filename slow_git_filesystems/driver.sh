@@ -48,9 +48,17 @@ mkdir -p ${logdir} || exit 1
 for dir in {${HOME},${SCRATCH},$WORK,/var/tmp/${USER}}/git_clone_tests; do
 
     testpath=${dir//\//_}
-    logfile="${logdir}/${NCAR_HOST}${testpath}.log"
+    export logfile="${logdir}/${NCAR_HOST}${testpath}.log"
+    export csvfile="${logdir}/${NCAR_HOST}${testpath}.csv"
 
     touch "${logfile}" || { echo "Cannot write ${logfile}"; continue; }
+
+    if [ ! -f "${csvfile}" ]; then
+        cat <<EOF >${csvfile}
+# ${NCAR_HOST} - ${dir}
+Date,Elapsed(s)
+EOF
+    fi
 
     #echo ${logfile}
     #echo ${testpath}
