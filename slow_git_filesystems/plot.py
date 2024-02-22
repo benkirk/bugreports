@@ -163,6 +163,7 @@ def histogram(items):
     
     
     plt.show()
+    fig.savefig('histogram.png', bbox_inches='tight', dpi=150, transparent=False)
     plt.close()
     return
 
@@ -214,6 +215,7 @@ def history(items):
     ax.tick_params(axis='x', labelrotation=60)
     
     plt.show()
+    fig.savefig('history.png', bbox_inches='tight', dpi=150, transparent=False)
     plt.close()
     return
 
