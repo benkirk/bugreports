@@ -6,6 +6,7 @@ tmpdir=$(mktemp --directory --tmpdir=${topdir})
 cd ${tmpdir} || exit 1
 
 echo "#------------------------------------------------------------------------------"
+echo "# $(hostname): $(uptime)"
 echo "# $(date)"
 echo "# $(pwd)"
 
@@ -20,7 +21,8 @@ sstop=$(date +%s)
 elapsed=$((${sstop} - ${sstart}))
 echo "# --> END execution"
 echo "# ${datestamp} Elapsed: $(python -c "print('{:6.2f}'.format(${elapsed}/60))") minutes ($(hostname), $(pwd))"
-echo "# $(find $(pwd) | wc -l)"
+echo "# Items: $(find $(pwd) | wc -l)"
+echo "# Size:  $(du -hs $(pwd))"
 echo
 echo
 
