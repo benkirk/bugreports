@@ -45,7 +45,7 @@ topdir="$(pwd)"
 logdir="${topdir}/logs"
 mkdir -p ${logdir} || exit 1
 
-for dir in {${HOME},${SCRATCH},$WORK,/var/tmp/${USER}}/git_clone_tests; do
+for dir in {${HOME},${SCRATCH},${WORK},/var/tmp/${USER}}/git_clone_tests; do
 
     testpath=${dir//\//_}
     export logfile="${logdir}/${NCAR_HOST}${testpath}.log"

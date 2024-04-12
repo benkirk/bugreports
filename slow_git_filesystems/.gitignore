@@ -1,0 +1,6 @@
+*~
+*.png
+*.log
+__pycache__/
+fonts/
+logs/
