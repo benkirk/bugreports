@@ -1,14 +1,10 @@
 all: pio_noncontig buf_noncontig
 
-pio_noncontig: Makefile config_env.sh
+%: config_env.sh
 	rm -f $@ $@.c
-	wget https://raw.githubusercontent.com/wkliao/mpich/romio_dev/src/mpi/romio/test/pio_noncontig.c
+	wget https://raw.githubusercontent.com/wkliao/mpich/romio_dev/src/mpi/romio/test/$*.c
 	cc -o $@ $@.c
-
-buf_noncontig: Makefile config_env.sh
-	rm -f $@ $@.c
-	wget https://raw.githubusercontent.com/wkliao/mpich/romio_dev/src/mpi/romio/test/buf_noncontig.c
-	cc -o $@ $@.c
+	rm -f $@.c
 
 clean:
 	rm -f *~ *.tar.*
@@ -20,3 +16,11 @@ clobber:
 
 distclean:
 	git clean -xdf .
+
+report:
+	$(MAKE) report_write
+	echo
+	$(MAKE) report_read
+
+report_%:
+	grep "Time of collective $*" logs/*/pio_noncontig-*_*.o*

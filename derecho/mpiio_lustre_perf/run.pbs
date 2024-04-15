@@ -1,13 +1,23 @@
 #!/bin/bash
-#PBS  -N mpiioperf
-#PBS  -r n
-#PBS  -j oe
-#PBS  -l select=16:ncpus=128:mpiprocs=128:ompthreads=1
-#PBS  -q main
-#PBS  -l walltime=00:30:00
+#PBS -N mpiioperf
+#PBS -r n
+#PBS -j oe
+#PBS -l select=16:ncpus=128:mpiprocs=128:ompthreads=1
+#PBS -q main
+#PBS -m n
+#PBS -l walltime=00:30:00
 
 . config_env.sh || exit 1
 
-make pio_noncontig || exit 1
+echo && echo
+
+#export MPICH_MPIIO_HINTS="*:striping_factor=<STRIPE_COUNT>:striping_unit=<STRIPE_WIDTH (bytes)>"
+export MPICH_MPIIO_HINTS_DISPLAY=1
+export MPICH_MPIIO_TIMERS=1
+export MPICH_MPIIO_STATS=1
 
 mpiexec --no-transfer ./pio_noncontig
+
+echo && echo
+lfs getstripe pio_noncontig.out
+rm -f pio_noncontig.out
