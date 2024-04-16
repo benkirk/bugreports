@@ -23,4 +23,11 @@ report:
 	$(MAKE) report_read
 
 report_%:
-	grep "Time of collective $*" logs/*/pio_noncontig-*_*.o*
+	@for file in logs/*/pio_noncontig-*_*.o*; do\
+	        grep -c "Time of collective" >/dev/null $$file || continue;\
+		echo "$$file : $$(grep "Time of collective $*" $$file | head -n 1) (-g 16)";\
+		echo "$$file : $$(grep "Time of collective $*" $$file | tail -n 1) (-g 0)";\
+	done
+
+run: test_stripes.sh
+	./$<

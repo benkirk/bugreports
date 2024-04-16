@@ -16,7 +16,13 @@ export MPICH_MPIIO_HINTS_DISPLAY=1
 export MPICH_MPIIO_TIMERS=1
 export MPICH_MPIIO_STATS=1
 
-mpiexec --no-transfer ./pio_noncontig
+mpiexec --no-transfer \
+        ./pio_noncontig -g 16
+
+rm -f pio_noncontig.out
+
+mpiexec --no-transfer \
+        ./pio_noncontig -g 0
 
 echo && echo
 lfs getstripe pio_noncontig.out
