@@ -1,0 +1,12 @@
+#!/bin/bash -l
+#PBS -A SCSG0001
+#PBS -N test_alltoall
+#PBS -j oe
+#PBS -q main
+#PBS -l walltime=01:00:00
+#PBS -l select=8:ncpus=128:mpiprocs=128
+
+source config_env.sh || exit 1
+
+# mpiexec -n 4 ./test_obsseq_rw
+map --profile -n 1024 --procs-per-node=128 ./test_obsseq_rw
