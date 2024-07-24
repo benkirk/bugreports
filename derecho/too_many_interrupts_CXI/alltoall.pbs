@@ -4,9 +4,26 @@
 #PBS -j oe
 #PBS -q main
 #PBS -l walltime=01:00:00
-#PBS -l select=8:ncpus=128:mpiprocs=128
+#PBS -l select=2:ncpus=128:mpiprocs=128
 
 source config_env.sh || exit 1
 
-# mpiexec -n 4 ./test_obsseq_rw
-map --profile -n 1024 --procs-per-node=128 ./test_obsseq_rw
+### Interrogate Environment
+env | egrep "PBS|MPI|THREADS" | sort
+nodes_list=$(cat $PBS_NODEFILE | sort | uniq)
+nodes_list=${nodes_list//.hsn.de.hpc.ucar.edu/}
+echo "# -> PBS_JOBID=${PBS_JOBID}"
+echo "# -> NODES=\""${nodes_list}"\""
+
+make alltoall-{profile,noprofile}
+
+echo "# -> Beginning non-profied case at $(date)"
+mpiexec ./alltoall-noprofile
+
+echo && echo
+echo "# -> Beginning MAP-profied case at $(date)"
+
+map --profile -n 1024 --procs-per-node=128 ./alltoall-profile
+
+echo && echo
+echo "# -> DONE at $(date)"
