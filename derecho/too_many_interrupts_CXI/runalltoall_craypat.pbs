@@ -1,0 +1,29 @@
+#!/bin/bash -l
+#PBS -A SCSG0001
+#PBS -N test_alltoall
+#PBS -j oe
+#PBS -q main
+#PBS -l walltime=01:00:00
+#PBS -l select=2:ncpus=128:mpiprocs=128
+
+source config_env.sh || exit 1
+
+### Interrogate Environment
+env | egrep "PBS|MPI|THREADS" | sort
+nodes_list=$(cat $PBS_NODEFILE | sort | uniq)
+nodes_list=${nodes_list//.hsn.de.hpc.ucar.edu/}
+echo "# -> PBS_JOBID=${PBS_JOBID}"
+echo "# -> NODES=\""${nodes_list}"\""
+
+make alltoall-{profile,noprofile}
+
+echo "# -> Beginning non-profied case at $(date)"
+mpiexec ./alltoall-noprofile
+
+echo && echo
+echo "# -> Beginning MAP-profied case at $(date)"
+
+map --profile -n 256 --procs-per-node=128 ./alltoall-profile
+
+echo && echo
+echo "# -> DONE at $(date)"

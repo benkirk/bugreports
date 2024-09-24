@@ -24,7 +24,18 @@ echo "# --> BEGIN execution (${step})"
 datestamp="$(date +%F\ %H:%M)"
 git clone https://github.com/escomp/cesm.git my_cesm_sandbox
 cd ./my_cesm_sandbox
-./manage_externals/checkout_externals
+git checkout release-cesm2.2.2
+# protect against checkout errors, e.g.
+# ERROR:root:Command '['git', 'clone', '--quiet', 'https://github.com/ESCOMP/CAM', '/glade/derecho/scratch/benkirk/tmp/tmpfoo/my_cesm_sandbox/components/cam']' returned non-zero exit status 128.
+# ERROR:root:Failed with output:
+#     error: RPC failed; curl 56 Recv failure: Connection reset by peer
+#     error: 7901 bytes of body are still expected
+#     fetch-pack: unexpected disconnect while reading sideband packet
+#     fatal: early EOF
+#     fatal: fetch-pack: invalid index-pack output
+for try in 0 1 2 3; do
+    ./manage_externals/checkout_externals && break
+done
 sstop=$(date +%s)
 elapsed=$((${sstop} - ${sstart}))
 echo "# --> END execution (${step})"
